@@ -8,9 +8,8 @@ body {
     background-color: white;
 }
 
-
 #iphonex {
-    background-image: url("../images/iphone_frame.png");
+    background-image: url('../images/iphone_frame.png');
     background-repeat: no-repeat;
     background-size: 375px 812px;
     width: 375px;
@@ -32,8 +31,6 @@ body {
     position: relative;
 }
 
-
-
 #head {
     display: flex;
 }
@@ -48,13 +45,12 @@ body {
     right: 30px;
 }
 
-
 nav {
     text-transform: uppercase;
     font-weight: 500;
-    font-size: .9rem;
-    letter-spacing: .1rem;
-    background: rgba(0, 0, 0, 0.1)!important;
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+    background: rgba(0, 0, 0, 0.1) !important;
     padding: 1em;
 }
 
@@ -65,8 +61,8 @@ nav {
     justify-content: space-around;
 
     position: fixed;
-    
-    bottom: 3%; 
+
+    bottom: 3%;
     width: 100%;
 }
 
@@ -75,6 +71,4 @@ nav {
     width: 4em;
 }
 
-
 /* ///////////////// */
-

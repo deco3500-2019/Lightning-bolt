@@ -3,21 +3,29 @@ body {
     margin: 0;
     padding: 0;
     font-size: 12px;
+    overflow: hidden;
 }
 
 #iphonex {
-    position: absolute;
+    /*     position: absolute;
     transform: translate(-50%, 0);
     left: 50%;
-    top: 0;
-    background-image: url("../images/iphone_frame.png");
+    top: 0; */
+    background-image: url('../images/iphone_frame.png');
     background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
     background-size: 375px 812px;
-    width: 375px;
-    height: 812px;
+    /* width: 375px;
+    height: 812px; */
+    overflow: auto;
     /* margin: 0 35%; */
-    margin: 0;
     /* z-index: 2; */
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    position: absolute; /* make it overlap your website content */
+    pointer-events: none;
 }
 
 #screen {
@@ -26,41 +34,47 @@ body {
     /* border-radius: 5%; */
     /* background-color: red; */
     /* z-index: -1; */
+    overflow: auto;
 }
 
 #head {
     display: flex;
+    position: sticky;
+    width: 375px;
+    top: 0;
+
+    background: white;
 }
 
 #time {
-    margin: 10% 10%;
+    margin: 10% 43% 6% 10%; /* dirty hack because float right isn't working */
 }
 
 #status_icon {
-    margin: 10% 0;
-    position: absolute;
-    right: 30px;
+    margin: 10% 10% 6% 10%;
 }
 
 nav {
     text-transform: uppercase;
     font-weight: 500;
-    font-size: .9rem;
-    letter-spacing: .1rem;
-    background: rgba(0, 0, 0, 0.1)!important;
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+    background: rgba(0, 0, 0, 0.1) !important;
     padding: 1em;
+    width: 375px;
+    height: 50px;
+    backdrop-filter: blur(4px);
 }
 
 .footer-bar {
     text-align: center;
-    padding: 5% 6%;
+    padding: 1.5% 1.5% 4% 1.5%;
     display: flex;
     justify-content: space-around;
 
     position: fixed;
-    
-    bottom: 3%; 
-    width: 100%;
+
+    bottom: 2.5%;
 }
 
 .footer-img {
