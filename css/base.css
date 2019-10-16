@@ -7,51 +7,57 @@ body {
 }
 
 #iphonex {
-    /*     position: absolute;
-    transform: translate(-50%, 0);
-    left: 50%;
-    top: 0; */
     background-image: url('../images/iphone_frame.png');
     background-repeat: no-repeat;
     background-position: center top;
     background-attachment: fixed;
     background-size: 375px 812px;
-    /* width: 375px;
-    height: 812px; */
     overflow: auto;
-    /* margin: 0 35%; */
-    /* z-index: 2; */
     height: 100%;
     width: 100%;
     z-index: 1;
-    position: absolute; /* make it overlap your website content */
+    position: absolute;
     pointer-events: none;
 }
 
 #screen {
     width: 375px;
     height: 812px;
-    /* border-radius: 5%; */
-    /* background-color: red; */
-    /* z-index: -1; */
-    overflow: auto;
+    overflow: hidden visible;
+}
+
+#screen > * {
+    min-width: 345px;
+}
+
+#screen::after {
+    height: 100px;
+    bottom: 0;
 }
 
 #head {
     display: flex;
     position: sticky;
-    width: 375px;
     top: 0;
+    left: 0;
+    right: 0;
 
-    background: white;
+    backdrop-filter: blur(4px);
 }
 
 #time {
-    margin: 10% 43% 6% 10%; /* dirty hack because float right isn't working */
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-bottom: 6%;
+    margin-right: auto;
 }
 
 #status_icon {
-    margin: 10% 10% 6% 10%;
+    /* margin: 10% 0% 6% 10%; */
+    margin-top: 10%;
+    margin-left: auto;
+    margin-bottom: 6%;
+    margin-right: 5%;
 }
 
 nav {
@@ -73,11 +79,34 @@ nav {
     justify-content: space-around;
 
     position: fixed;
-
-    bottom: 2.5%;
+    top: 712px;
 }
 
 .footer-img {
     height: 4em;
     width: 4em;
+}
+
+.exit-modal {
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    /* visibility: hidden;
+    opacity: 0;
+    pointer-events: none; */
+    transition: all 0.3s;
+    &:target {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    & > div {
+        width: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 2em;
+        background: #ffffff;
+    }
 }

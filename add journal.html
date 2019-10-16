@@ -12,6 +12,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/journal.css" />
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -59,44 +60,52 @@
                 </div>
             </div>
 
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <h1>Sample Text</h1>
-            <div id="top"></div>
+            <form id="write" action="?????">
+                <!-- add handler! -->
+                <div id="write-head">
+                    <input type="checkbox" class="modal-state" hidden />
+                    <a href="index.html" id="cancel">
+                        <img src="images/cross.png" alt="Cancel!"
+                    /></a>
+                    <h3>Post Reflection</h3>
+                    <input type="image" src="images/tick.png" alt="Done!" />
+                </div>
+                <img src="images/Forum.png" alt="Social media post" />
+                <div id="write-body">
+                    <h4>How do you feel about this post?</h4>
+                    <textarea
+                        form="write"
+                        name="what"
+                        cols="43"
+                        rows="5"
+                        placeholder="...?"
+                    ></textarea>
+                    <h4>Why do you feel that way?</h4>
+                    <textarea
+                        form="write"
+                        name="why"
+                        cols="43"
+                        rows="5"
+                        placeholder="...?"
+                    ></textarea>
+                </div>
+            </form>
+
+            <div class="exit-modal" hidden>
+                <div>
+                    <p>you sure about that?</p>
+                    <a href="#" class="exit-modal-close">Hell no.</a>
+                    <a href="index.html">YES! YES! YES!</a>
+                </div>
+            </div>
 
             <nav class="row footer-bar">
                 <div class="col">
-                    <a
+                    <a href="index.html"
                         ><img
                             class="footer-img"
                             src="images/Room.png"
-                            alt="Room"
+                            alt="Home"
                     /></a>
                 </div>
                 <div class="col">
@@ -104,7 +113,7 @@
                         ><img
                             class="footer-img"
                             src="images/Meter.png"
-                            alt="Room"
+                            alt="Meter"
                     /></a>
                 </div>
                 <div class="col">
@@ -112,7 +121,7 @@
                         ><img
                             class="footer-img"
                             src="images/Journal.png"
-                            alt="Room"
+                            alt="Journal"
                     /></a>
                 </div>
                 <div class="col">
@@ -120,7 +129,7 @@
                         ><img
                             class="footer-img"
                             src="images/Forum.png"
-                            alt="Room"
+                            alt="Forum"
                     /></a>
                 </div>
                 <div class="col">
@@ -128,7 +137,7 @@
                         ><img
                             class="footer-img"
                             src="images/Support.png"
-                            alt="Room"
+                            alt="Support"
                     /></a>
                 </div>
             </nav>
