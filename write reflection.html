@@ -58,21 +58,25 @@
                     <label for="exit-modal" class="clickable"
                         ><img src="images/cross.png" alt="Cancel!"
                     /></label>
-                    <h3>Post Reflection</h3>
+                    <h4>
+                        Social Media <br />
+                        Reflection
+                    </h4>
                     <input type="image" src="images/tick.png" alt="Done!" />
                 </div>
-                <img
-                    src="images/Forum.png"
-                    alt="Social media post"
-                    class="button"
-                />
                 <div id="write-body">
+                    <!-- Replace this with a social media webhook or something. -->
+                    <img
+                        src="images/Forum.png"
+                        alt="Social media post"
+                        class="button"
+                    />
                     <h4>How do you feel about this post?</h4>
                     <textarea
                         form="write"
                         name="what"
                         cols="43"
-                        rows="5"
+                        rows="2"
                         placeholder="...?"
                     ></textarea>
                     <h4>Why do you feel that way?</h4>
@@ -80,9 +84,30 @@
                         form="write"
                         name="why"
                         cols="43"
-                        rows="5"
+                        rows="4"
                         placeholder="...?"
                     ></textarea>
+
+                    <h4>How are you feeling today?</h4>
+                    <div id="mood">
+                        <input type="radio" name="mood" id="happy" value="1" />
+                        <label for="happy" class="button">🟡 Happy</label>
+                        <input type="radio" name="mood" id="tired" value="2" />
+                        <label for="tired" class="button">🟠 Tired</label>
+                        <input type="radio" name="mood" id="angry" value="3" />
+                        <label for="angry" class="button">🔴 Angry</label>
+                        <input
+                            type="radio"
+                            name="mood"
+                            id="energetic"
+                            value="4"
+                        />
+                        <label for="energetic" class="button"
+                            >🟢 Energetic</label
+                        >
+                        <input type="radio" name="mood" id="sad" value="5" />
+                        <label for="sad" class="button">🔵 Sad</label>
+                    </div>
                 </div>
             </form>
 

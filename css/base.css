@@ -129,7 +129,9 @@ a:not([href]) .footer-img {
     transition: all 0.05s;
 }
 
-.button:active {
+.button:active,
+.button:checked,
+input:checked + label.button {
     box-shadow: none;
     transform: translate(5px, 5px);
 }
