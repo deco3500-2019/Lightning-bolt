@@ -55,10 +55,9 @@
             <form id="write" action="?????">
                 <!-- add handler! -->
                 <div id="write-head">
-                    <input type="checkbox" class="modal-state" hidden />
-                    <a href="index.html" id="cancel">
-                        <img src="images/cross.png" alt="Cancel!"
-                    /></a>
+                    <label for="exit-modal"
+                        ><img src="images/cross.png" alt="Cancel!"
+                    /></label>
                     <h3>Post Reflection</h3>
                     <input type="image" src="images/tick.png" alt="Done!" />
                 </div>
@@ -87,11 +86,13 @@
                 </div>
             </form>
 
-            <div class="exit-modal" hidden>
+            <input type="checkbox" id="exit-modal" class="modal-state" />
+            <div class="overlay">
                 <div>
-                    <p>you sure about that?</p>
-                    <a href="#" class="exit-modal-close">Hell no.</a>
-                    <a href="index.html">YES! YES! YES!</a>
+                    <h3>Exit without saving?</h3>
+                    <hr />
+                    <a href="index.html">Yes</a>
+                    <label for="exit-modal">No</label>
                 </div>
             </div>
 
