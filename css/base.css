@@ -104,6 +104,10 @@ nav {
     top: 712px;
 }
 
+a:not([href]) .footer-img {
+    filter: opacity(50%);
+}
+
 .footer-img {
     height: 36px;
     width: 36px;
