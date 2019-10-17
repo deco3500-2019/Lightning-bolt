@@ -1,5 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+
+* {
+    font-family: 'Indie Flower', cursive;
+    text-transform: uppercase;
+}
+
+p:link, p:visited, p:hover, p:active {
+    text-decoration: none;
+}
+
 body {
-    font-family: Arial;
     margin: 0;
     padding: 0;
     font-size: 12px;
@@ -50,6 +60,8 @@ body {
     margin-left: 10%;
     margin-bottom: 6%;
     margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
 }
 
 #status_icon {
@@ -89,8 +101,14 @@ nav {
 }
 
 .footer-img {
-    height: 4em;
-    width: 4em;
+    height: 36px;
+    width: 36px;
+}
+
+.button {
+    border: 1px #bbb solid;
+    box-shadow: 5px 5px #ccc;
+    border-radius: 20px;
 }
 
 /* .exit-modal {
