@@ -9,7 +9,7 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-    color: black;
+    color: black !important;
     text-decoration: none !important;
 }
 
@@ -109,11 +109,20 @@ nav {
     width: 36px;
 }
 
+.footer-img:active {
+    transform: translate(1px, 1px);
+}
+
+.clickable {
+    cursor: pointer;
+}
+
 .button {
     border: 1px #bbb solid;
     box-shadow: 5px 5px #ccc;
     border-radius: 20px;
     cursor: pointer;
+    transition: all 0.05s;
 }
 
 .button:active {
