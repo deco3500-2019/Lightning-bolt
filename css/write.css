@@ -32,9 +32,11 @@
     display: inline-block;
 }
 
-#write-body img {
+#write-body img,
+#write-body .fb-post {
     max-width: 90%;
     max-height: 90%;
+    transform: scale(50%);
 }
 
 #mood input {
