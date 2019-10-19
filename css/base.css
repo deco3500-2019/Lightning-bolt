@@ -5,6 +5,10 @@
     text-transform: uppercase;
 }
 
+.title {
+    text-align: center;
+}
+
 a:link,
 a:visited,
 a:hover,
