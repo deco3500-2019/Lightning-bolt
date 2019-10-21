@@ -52,15 +52,6 @@
     background-color: white;
 }
 
-.drop_down_year:after {
-    content: url('../images/drop-down.jpg');
-    /* display: block;
-    background-image: ;
-    background-size: cover;
-    width: 2em; */
-    /* width: 2em;
-    height: 2em; */
-}
 
 #card {
     width: 250px;
@@ -182,6 +173,10 @@ ul {
     margin-bottom: 5px;
     font-size: 1em;
     color: #777;
+}
+
+.space {
+    visibility: hidden;
 }
 
 #flip-wrapper {
