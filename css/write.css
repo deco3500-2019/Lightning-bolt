@@ -5,8 +5,9 @@
     justify-content: space-around;
 }
 
-#write-head h3 {
-    margin: 10px;
+#write-head h4 {
+    margin: 0;
+    margin-top: 5px;
 }
 
 #write-head input,
@@ -18,17 +19,39 @@
 #write-body {
     padding-left: 5%;
     padding-right: 5%;
+    text-align: center;
 }
 
-#write-body textarea {
-    height: 100px;
-    max-width: 100%;
+#write-body textarea,
+#mood {
+    width: 100%;
+    border: 1px #bbb solid;
     border-radius: 10px;
     padding: 10px;
-    resize: none;
+    resize: vertical;
+    display: inline-block;
 }
 
-#write > img {
-    max-width: 100%;
-    max-height: 100%;
+#write-body img,
+#write-body .fb-post {
+    max-width: 90%;
+    max-height: 90%;
+    transform: scale(50%);
+}
+
+#mood input {
+    visibility: hidden;
+    position: fixed;
+}
+
+#mood label {
+    padding: 20px 0;
+    margin: 10px;
+    width: 40%;
+    font-weight: bolder;
+    overflow: visible;
+}
+
+.overlay div {
+    text-align: center;
 }

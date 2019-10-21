@@ -29,6 +29,12 @@
 
 <html>
     <body>
+        <script
+            async
+            defer
+            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"
+        ></script>
+
         <div id="iphonex"></div>
         <div id="screen" class="container">
             <div id="head">
@@ -51,29 +57,31 @@
                     />
                 </div>
             </div>
-
             <form id="write" action="?????">
                 <!-- add handler! -->
                 <div id="write-head">
-                    <input type="checkbox" class="modal-state" hidden />
-                    <a href="index.html" id="cancel">
-                        <img src="images/cross.png" alt="Cancel!"
-                    /></a>
-                    <h3>Post Reflection</h3>
+                    <label for="exit-modal" class="clickable"
+                        ><img src="images/cross.png" alt="Cancel!"
+                    /></label>
+                    <h4>
+                        Social Media <br />
+                        Reflection
+                    </h4>
                     <input type="image" src="images/tick.png" alt="Done!" />
                 </div>
-                <img
-                    src="images/Forum.png"
-                    alt="Social media post"
-                    class="button"
-                />
+                <div
+                    class="fb-post"
+                    data-href="https://www.facebook.com/20531316728/posts/10154009990506729/"
+                    data-width="350"
+                ></div>
+                <hr />
                 <div id="write-body">
                     <h4>How do you feel about this post?</h4>
                     <textarea
                         form="write"
                         name="what"
                         cols="43"
-                        rows="5"
+                        rows="2"
                         placeholder="...?"
                     ></textarea>
                     <h4>Why do you feel that way?</h4>
@@ -81,17 +89,42 @@
                         form="write"
                         name="why"
                         cols="43"
-                        rows="5"
+                        rows="4"
                         placeholder="...?"
                     ></textarea>
+
+                    <h4>How are you feeling today?</h4>
+                    <div id="mood">
+                        <input type="radio" name="mood" id="happy" value="1" />
+                        <label for="happy" class="button">🟡 Happy</label>
+                        <input type="radio" name="mood" id="tired" value="2" />
+                        <label for="tired" class="button">🟠 Tired</label>
+                        <input type="radio" name="mood" id="angry" value="3" />
+                        <label for="angry" class="button">🔴 Angry</label>
+                        <input
+                            type="radio"
+                            name="mood"
+                            id="energetic"
+                            value="4"
+                        />
+                        <label for="energetic" class="button"
+                            >🟢 Energetic</label
+                        >
+                        <input type="radio" name="mood" id="sad" value="5" />
+                        <label for="sad" class="button">🔵 Sad</label>
+                    </div>
                 </div>
             </form>
 
-            <div class="exit-modal" hidden>
+            <input type="checkbox" id="exit-modal" class="modal-state" hidden />
+            <div class="overlay">
                 <div>
-                    <p>you sure about that?</p>
-                    <a href="#" class="exit-modal-close">Hell no.</a>
-                    <a href="index.html">YES! YES! YES!</a>
+                    <h3>Exit without saving?</h3>
+                    <hr />
+                    <a href="index.html"><h3>Yes</h3></a>
+                    <label for="exit-modal" class="clickable"
+                        ><h3>No</h3>
+                    </label>
                 </div>
             </div>
 
@@ -105,7 +138,7 @@
                     /></a>
                 </div>
                 <div class="col">
-                    <a
+                    <a href="profile.html"
                         ><img
                             class="footer-img"
                             src="images/Meter.png"
@@ -129,7 +162,7 @@
                     /></a>
                 </div>
                 <div class="col">
-                    <a
+                    <a href="support.html"
                         ><img
                             class="footer-img"
                             src="images/Support.png"

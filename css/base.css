@@ -1,12 +1,20 @@
-@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
 * {
     font-family: 'Indie Flower', cursive;
     text-transform: uppercase;
 }
 
-p:link, p:visited, p:hover, p:active {
-    text-decoration: none;
+.title {
+    text-align: center;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: black !important;
+    text-decoration: none !important;
 }
 
 body {
@@ -25,7 +33,7 @@ body {
     overflow: auto;
     height: 100%;
     width: 100%;
-    z-index: 1;
+    z-index: 999;
     position: absolute;
     pointer-events: none;
 }
@@ -100,37 +108,63 @@ nav {
     top: 712px;
 }
 
+a:not([href]) .footer-img {
+    filter: opacity(50%);
+}
+
 .footer-img {
     height: 36px;
     width: 36px;
+}
+
+.footer-img:active {
+    transform: translate(1px, 1px);
+}
+
+.clickable {
+    cursor: pointer;
 }
 
 .button {
     border: 1px #bbb solid;
     box-shadow: 5px 5px #ccc;
     border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.05s;
 }
 
-/* .exit-modal {
+.button:active,
+.button:checked,
+input:checked + label.button {
+    box-shadow: none;
+    transform: translate(5px, 5px);
+}
+
+.overlay {
     background-color: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(2px);
-    z-index: 999;
-    /* visibility: hidden;
+    z-index: 2;
+    visibility: hidden;
     opacity: 0;
-    pointer-events: none; */
+    pointer-events: none;
     transition: all 0.3s;
-    &:target {
-        visibility: visible;
-        opacity: 1;
-        pointer-events: auto;
-    }
-    & > div {
-        width: 400px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 2em;
-        background: #ffffff;
-    }
-} */
+    height: 812px;
+    top: 0;
+    position: fixed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay > div {
+    padding: 20px;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.modal-state:checked + .overlay {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: visible;
+}
