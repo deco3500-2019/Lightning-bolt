@@ -58,6 +58,22 @@
     overflow: visible;
 }
 
+#happy-label {
+    border: outset 3px yellow;
+}
+#tired-label {
+    border: outset 3px orange;
+}
+#angry-label {
+    border: outset 3px red;
+}
+#energetic-label {
+    border: outset 3px chartreuse;
+}
+#sad-label {
+    border: outset 3px royalblue;
+}
+
 .overlay div {
     text-align: center;
 }
@@ -68,5 +84,4 @@
     line-height: 200px;
     border: 1px #ccc solid;
     margin: 3% 7%;
-    border-radius: ;
 }
