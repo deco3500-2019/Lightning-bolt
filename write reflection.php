@@ -159,7 +159,7 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
                     /></a>
                 </div>
                 <div class="col">
-                    <a href="profile.html"
+                    <a href="profile.php"
                         ><img
                             class="footer-img"
                             src="images/Meter.png"

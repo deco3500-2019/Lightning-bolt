@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<head>
+    <title>Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+</head>
+
+<html>
+  <body>
+    <div id="iphonex"></div>
+    <div id="screen" class="container">
+    <div id="head">
+        <div id="time">1:3</div>
+        <div id="status_icon">
+            <img src="images/network.png" alt="network" style="width: 15px;">
+            <img src="images/wifi.png" alt="wifi" style="width: 18px;">
+            <img src="images/battery.png" alt="battery" style="width: 20px;;">
+        </div>
+        </div>
+        <div id="content" class="container">
+            <div id="profile_pic" class="row">
+                <img src="images/profile_pic.jpg">
+            </div>
+            <div id="info" class="row">
+                <p><strong>Name:</strong> name</p>
+                <p><strong>Username:</strong> username</p>
+                <p><strong>DOB:</strong> dob</p>
+            </div>
+            <hr class="line">
+            <h3>Mood tracker</h3>
+            <canvas id="chart"></canvas>
+        </div>
+        <nav class="row footer-bar">
+          <div class="col">
+              <a href="index.html"
+                  ><img
+                      class="footer-img"
+                      src="images/Room.png"
+                      alt="Home"
+              /></a>
+          </div>
+          <div class="col">
+              <a href="profile.php"
+                  ><img
+                      class="footer-img"
+                      src="images/Meter.png"
+                      alt="Meter"
+              /></a>
+          </div>
+          <div class="col">
+              <a href="framework.html"
+                  ><img
+                      class="footer-img"
+                      src="images/Journal.png"
+                      alt="Journal"
+              /></a>
+          </div>
+          <div class="col">
+              <a
+                  ><img
+                      class="footer-img"
+                      src="images/Forum.png"
+                      alt="Forum"
+              /></a>
+          </div>
+          <div class="col">
+              <a href="support.html"
+                  ><img
+                      class="footer-img"
+                      src="images/Support.png"
+                      alt="Support"
+              /></a>
+          </div>
+      </nav>
+    </div>
+  </body>
+
+<?php
+  echo "<script>var moods = [3,2,1,4,5,3]</script>";
+  
+  include 'conn.php';
+  $db = new MySQLDatabase();
+  $db->connect();
+  $entry = $db->query("SELECT * FROM 3500website");
+  if (mysqli_num_rows($entry)) {
+    if ($row = mysqli_fetch_array($entry)) {
+      $mood = $row['Mood'];
+      echo "<script>";
+      echo "moods.push(parseInt('$mood'));";
+      echo "</script>";
+    }
+  }
+?>
+
+<script>
+  
+  var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var dayName;
+  var days = [];
+  for (var i=0; i<7; i++) {
+    var d = new Date();
+    d.setDate(d.getDate() - i);
+    dayName = dayNames[d.getDay()];
+    days.unshift(dayName);
+  }
+  
+  var pointColors = [];
+  moods.forEach(function(mood) {
+    switch(mood) {
+      case 1:
+        pointColors.push('#7AB1FF');
+        break;
+      case 2:
+        pointColors.push('#EE5D68');
+        break;
+      case 3:
+        pointColors.push('#FFAD32');
+        break;
+      case 4:
+        pointColors.push('#5BFF62');
+        break;
+      case 5:
+        pointColors.push('#FBFF00');
+        break;
+    }
+  });
+  console.log(moods);
+  
+  let chart = document.getElementById('chart').getContext('2d');
+  let moodChart = new Chart(chart, {
+    type:'line',
+    data:{
+      labels: days,
+      datasets:[{
+        label: 'mood',
+        backgroundColor: 'transparent',
+        borderColor: '#ccc',
+        pointRadius: 5,
+        pointBorderWidth: 1,
+        pointBorderColor: 'black',
+        borderWidth:2,
+        pointBackgroundColor: pointColors,
+        data:moods
+      }],
+    },
+    options:{
+      legend:{display:false},
+      scales: {
+        yAxes: [{
+          ticks: {
+            min: 1,
+            max: 5,
+            stepSize: 1,
+            suggestedMin: 1.5,
+            suggestedMax: 5.5,
+            callback: function(label, index, labels) {
+              switch (label) {
+                case 1:
+                  return 'Sad';
+                case 2:
+                  return 'Angry';
+                case 3:
+                  return 'Tired';
+                case 4:
+                  return 'Energetic';
+                case 5:
+                  return 'Happy';
+              }
+            }
+          }
+        }]
+      }
+    }
+  });
+</script>
+<script src="js/journal.js"></script>
+</html>
