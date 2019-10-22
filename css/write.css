@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
 #write-head {
     text-align: center;
     padding: 1.5% 5% 1.5% 5%;
@@ -10,7 +11,11 @@
     margin-top: 5px;
 }
 
-#write-head input,
+#write-head input {
+    height: 39px;
+    width: 39px;
+}
+
 #write-head img {
     height: 42px;
     width: 42px;
@@ -20,6 +25,7 @@
     padding-left: 5%;
     padding-right: 5%;
     text-align: center;
+    font-family: 'Inconsolata', monospace;
 }
 
 #write-body textarea,
@@ -54,4 +60,13 @@
 
 .overlay div {
     text-align: center;
+}
+
+.fb-post {
+    text-align: center;
+    height: 200px;
+    line-height: 200px;
+    border: 1px #ccc solid;
+    margin: 3% 7%;
+    border-radius: ;
 }
