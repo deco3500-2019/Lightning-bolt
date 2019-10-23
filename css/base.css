@@ -30,6 +30,10 @@
     margin-right: 14px;
 }
 
+.title-vert {
+    text-align: center;
+}
+
 a:link,
 a:visited,
 a:hover,
@@ -182,7 +186,7 @@ input:checked + label.button {
     pointer-events: visible;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 450px), (hover: none) and (pointer: coarse) {
     #screen {
         width: 100%;
     }
@@ -194,7 +198,8 @@ input:checked + label.button {
     }
 }
 
-@media only screen and (max-height: 800px) {
+@media only screen and (max-height: 800px),
+    (hover: none) and (pointer: coarse) {
     #screen {
         height: 100%;
     }
@@ -204,7 +209,9 @@ input:checked + label.button {
     }
 }
 
-@media only screen and (max-height: 800px), screen and (max-width: 450px) {
+@media only screen and (max-height: 800px),
+    screen and (max-width: 450px),
+    (hover: none) and (pointer: coarse) {
     #screen {
         margin: 0;
         padding-top: 2em;
