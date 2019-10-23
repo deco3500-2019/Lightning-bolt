@@ -24,8 +24,13 @@
     font-size: 34px;
 }
 
+.title h4 {
+    flex: 1;
+    padding-right: 40px;
+}
+
 .title img {
-    width: 36px;
+    width: 30px;
     margin-left: 14px;
     margin-right: 14px;
 }
@@ -64,6 +69,7 @@ body {
 }
 
 #screen {
+    margin: 0 auto;
     width: 375px;
     height: 812px;
     overflow: hidden visible;

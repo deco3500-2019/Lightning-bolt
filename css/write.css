@@ -85,3 +85,23 @@
     border: 1px #ccc solid;
     margin: 3% 7%;
 }
+
+.post_img {
+  width: 150px;
+}
+
+.journal_view {
+  padding: 20px;
+}
+
+div.mood_view {
+  border-radius: 15px;
+  width: 100px;
+  height: 35px;
+  text-align: center;
+}
+
+div.mood_view span {
+  line-height: 30px;
+  font-weight: bold;
+}
