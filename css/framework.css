@@ -2,12 +2,18 @@
 
 .title {
     text-align: center;
-    font-size: 2em;
 }
 
-#reflection {
-    margin: 20% 10%;
-    margin-bottom: 0;
+.wrapper {
+    padding-top: 20%;
+    display: flex !important;
+    justify-content: center;
+    align-content: center;
+    flex-grow: 1;
+}
+
+.wrapper > div {
+    display: inline-block;
 }
 
 #reflection p {
@@ -18,15 +24,15 @@
 
 #challenge {
     margin: 5% 1%;
-    margin-left: 10%;
-    width: 38%;
+    width: 48%;
+    flex: 1;
     float: left;
 }
 
 #diary {
     margin: 5% 1%;
-    margin-right: 10%;
-    width: 38%;
+    width: 48%;
+    flex: 1;
     float: right;
 }
 
@@ -39,27 +45,6 @@
 }
 
 /* journal css */
-
-.entry-head {
-    text-align: center;
-    padding: 1.5% 5% 1.5% 5%;
-    display: flex;
-    justify-content: left;
-}
-
-.entry-head h2 {
-    margin: 0;
-    flex: 1;
-}
-
-.entry-head img {
-    margin-left: 1em;
-    margin-right: 1em;
-}
-
-.back_img {
-    width: 2em;
-}
 
 #prev_journal {
     padding-bottom: 20px;

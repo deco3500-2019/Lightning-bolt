@@ -7,6 +7,27 @@
 
 .title {
     text-align: center;
+    padding: 1.5% 5% 1.5% 5%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.title h1,
+.title h2,
+.title h3 {
+    margin: 0;
+    flex: 1;
+}
+
+.title h3 {
+    font-size: 34px;
+}
+
+.title img {
+    width: 36px;
+    margin-left: 14px;
+    margin-right: 14px;
 }
 
 a:link,
