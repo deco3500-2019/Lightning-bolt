@@ -14,7 +14,7 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
   $db ->query("INSERT INTO 3500website(What, Why, Mood) VALUES('$what', '$why', '$mood')");
   
   $db->disconnect();
-  header('Location: entry.html');
+  header('Location: view journal.php');
 }
 ?>
 
@@ -87,7 +87,7 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
                         Social Media <br />
                         Reflection
                     </h4>
-                    <input type="image" src="images/tick.png" name="sub" value='Submit'>
+                    <input id="sub "type="image" src="images/tick.png" name="sub" value='Submit'>
                 </div>
                 <div class="fb-post">
                     <img src="images/add.png" alt="upload social media screenshot">
@@ -113,11 +113,11 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
 
                     <h4>How are you feeling today?</h4>
                     <div id="mood">
-                        <input type="radio" name="mood" id="happy" value="1" />
+                        <input type="radio" name="mood" id="happy" value="5" />
                         <label for="happy" id="happy-label" class="button">Happy</label>
-                        <input type="radio" name="mood" id="tired" value="2" />
+                        <input type="radio" name="mood" id="tired" value="3" />
                         <label for="tired" id="tired-label" class="button">Tired</label>
-                        <input type="radio" name="mood" id="angry" value="3" />
+                        <input type="radio" name="mood" id="angry" value="2" />
                         <label for="angry" id="angry-label" class="button">Angry</label>
                         <input
                             type="radio"
@@ -131,7 +131,7 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
                             class="button"
                             >Energetic</label
                         >
-                        <input type="radio" name="mood" id="sad" value="5" />
+                        <input type="radio" name="mood" id="sad" value="1" />
                         <label for="sad" id="sad-label" class="button">Sad</label>
                     </div>
                 </div>

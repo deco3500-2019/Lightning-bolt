@@ -94,6 +94,10 @@
   padding: 20px;
 }
 
+.journal_view textarea {
+  width: 100%;
+}
+
 div.mood_view {
   border-radius: 15px;
   width: 100px;

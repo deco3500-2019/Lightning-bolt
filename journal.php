@@ -60,7 +60,6 @@
                 /></a>
 
                 <h2 id="prev_title"></h2>
-              <a href="entry.html"><img src="images/crown.png"></a>
             </div>
 
             <div id="prev_journal">
@@ -73,14 +72,15 @@
                         <!-- <img src="images/2.jpg"> -->
                     </div>
                 </div>
-
-                <div class="jour">
-                    <div class="jour_date">
-                        <p>6</p>
-                        <p class="prev_w">Sun</p>
-                     </div>
-                    <div class="jour_img jour_img_2"></div>
-                </div>
+                <a href="entry.html">
+                    <div class="jour">
+                        <div class="jour_date">
+                            <p>6</p>
+                            <p class="prev_w">Sun</p>
+                         </div>
+                        <div class="jour_img jour_img_2"></div>
+                    </div>
+                </a>
 
                 <div class="jour">
                     <div class="jour_date">

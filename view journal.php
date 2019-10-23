@@ -95,15 +95,15 @@
                       break;
                   }
                   
-                  echo "<div class=\"container\">
+                  echo "<div class=\"col\">
                           <div class=\"fb-post\">
                             <img class=\"post_img\" src=\"images/post.png\">
                           </div>
                           <div class=\"journal_view\">
                             <h4>What did you feel</h4>
-                            <p>".$what."</p>
+                            <textarea disabled=\"disabled\">".$what."</textarea>
                             <h4>Why did you feel that way</h4>
-                            <p>".$why."</p>
+                            <textarea disabled=\"disabled\">".$why."</textarea>
                             <h4>Mood</h4>
                             <div id=".$label_id." class=\"mood_view\">
                               <span>".$mood_name."</span>
