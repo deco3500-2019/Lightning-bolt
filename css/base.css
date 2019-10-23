@@ -21,7 +21,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: 12px;
-    overflow: hidden;
+    overflow: hidden visible;
 }
 
 #iphonex {
@@ -87,25 +87,17 @@ body {
 }
 
 nav {
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 0.9rem;
-    letter-spacing: 0.1rem;
     background: rgba(0, 0, 0, 0.1) !important;
-    padding: 1em;
-    width: 375px;
-    height: 50px;
     backdrop-filter: blur(4px);
-    border-radius: 0 0 40px 40px;
-}
 
-.footer-bar {
-    text-align: center;
-    padding: 1.5% 1.5% 4% 1.5%;
-    display: flex;
+    width: 375px;
+    padding: 1em;
+
+    display: flex !important;
     justify-content: space-around;
     position: fixed;
-    top: 712px;
+
+    top: 722px;
 }
 
 a:not([href]) .footer-img {
@@ -167,4 +159,40 @@ input:checked + label.button {
     visibility: visible;
     opacity: 1;
     pointer-events: visible;
+}
+
+@media only screen and (max-width: 450px) {
+    #screen {
+        width: 100%;
+    }
+    #screen > * {
+        min-width: 100%;
+    }
+    nav {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-height: 800px) {
+    #screen {
+        height: 100%;
+    }
+    nav {
+        top: auto;
+        bottom: 0;
+    }
+}
+
+@media only screen and (max-height: 800px), screen and (max-width: 450px) {
+    #screen {
+        margin: 0;
+        padding-top: 2em;
+    }
+    #iphonex {
+        background-image: none;
+    }
+    #head {
+        visibility: hidden;
+        height: 0;
+    }
 }

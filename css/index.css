@@ -52,12 +52,14 @@
     background-color: white;
 }
 
+#card-wrapper {
+    width: 100%;
+    text-align: center;
+}
 
 #card {
-    width: 250px;
     height: 400px;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin: 5% 0;
     padding-left: 13%;
     padding-right: 13%;
     transition: transform 1s;
@@ -68,10 +70,12 @@
 #card .back {
     backface-visibility: hidden;
     position: absolute;
+    display: inline-block;
+    transform: translateX(-50%);
 }
 
 #card .back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateX(50%);
 }
 
 #card.flipped {
