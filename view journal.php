@@ -92,6 +92,11 @@
     <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 </head>
 <style>
+  .journal_view > textarea {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+  }
 </style>
 <html>
     <body>
