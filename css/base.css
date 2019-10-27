@@ -166,7 +166,7 @@ input:checked + label.button {
 .overlay {
     background-color: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(2px);
-    z-index: 2;
+    z-index: 12;
     visibility: hidden;
     opacity: 0;
     pointer-events: none;

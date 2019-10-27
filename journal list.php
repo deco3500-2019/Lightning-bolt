@@ -1,3 +1,15 @@
+<?php
+
+include 'conn.php';
+$db = new MySQLDatabase();
+$db->connect();
+
+if (isset($_POST["delete"])) {
+  $delete_id = $_POST["id"];
+  $db->query("DELETE FROM 3500website WHERE id=".$delete_id."");
+}
+
+?>
 <!DOCTYPE html>
 <head>
     <title></title>
@@ -12,7 +24,6 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/framework.css" />
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -28,7 +39,6 @@
 
     <script src="js/entry.js"></script>
 </head>
-
 <html>
     <body>
         <div id="iphonex"></div>
@@ -55,66 +65,48 @@
             </div>
 
             <div class="title">
-                <a href="index.html"
+                <a href="journal.php"
                     ><img class="back_img" src="images/back.png" alt="back"
                 /></a>
 
-                <h2 id="prev_title"></h2>
+                <h2 id="day_title"></h2>
             </div>
-
             <div id="prev_journal">
-                <div class="jour">
-                    <div class="jour_date">
-                        <p>2</p>
-                        <p class="prev_w">Wed</p>
-                    </div>
-                    <div class="jour_img jour_img_1">
-                        <!-- <img src="images/2.jpg"> -->
-                    </div>
-                </div>
-                <a href="entry.html">
-                    <div class="jour">
-                        <div class="jour_date">
-                            <p>6</p>
-                            <p class="prev_w">Sun</p>
-                         </div>
-                        <div class="jour_img jour_img_2"></div>
-                    </div>
-                </a>
-
-                <div class="jour">
-                    <div class="jour_date">
-                        <p>10</p>
-                        <p class="prev_w">Thu</p>
-                    </div>
-                    <div class="jour_img jour_img_3"></div>
-                </div>
+          
+          <?php
               
-              <?php
-              
-              include 'conn.php';
-              $db = new MySQLDatabase();
-              $db->connect();
-
-              $entry = $db->query("SELECT * FROM 3500website");
-              if (mysqli_num_rows($entry)) {
-                if ($row = mysqli_fetch_array($entry)) {
-                  echo "<a href=\"journal list.php\">
-                          <div class=\"jour\">
-                            <div class=\"jour_date\">
-                              <p id=\"date\"></p>
-                              <p id=\"day\" class=\"prev_w\"></p>
-                            </div>
-                            <div class=\"jour_img jour_img_4\"></div>
-                          </div>
-                        </a>";
-                }
+          $entries = $db->query("SELECT * FROM 3500website");
+          if (mysqli_num_rows($entries)) {
+            while ($row = $entries->fetch_array()):
+              $id = $row['id'];
+              $timestamp = $row['TimeStamp'];
+              $time = date('H:i', strtotime($row['TimeStamp']));
+              $title = $row['Title'];
+          ?>
+              <div style="margin: 20px 25px 0 25px; font-size: 20px; display: flex;" class="row">
+                <form method="post" action="view journal.php" style="flex-grow: 2;">
+                  <input type="hidden" name="method" value="view">
+                  <input type="hidden" name="id" value="<?php echo $id ?>">
+                  <button type="submit" name="view_journal" style="width: 100%; max-width: 250px; border: none; padding: 0px; background-color: transparent; text-align: left;">
+                    <p style="margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?php echo $title; ?></p>
+                    <p style="font-family:'arial'; color: gray; font-size: 12px;"><?php echo $time; ?></p>
+                  </button>
+                </form>
+                <form method="post">
+                  <input type="hidden" name="id" value="<?php echo $id ?>">
+                  <button type="submit" name="delete" style="border: none; padding: 0px; background-color: transparent;">
+                    ❌
+                  </button>
+                </form>
+              </div>
+              <hr style="border-bottom: 1px solid #ccc; width: 86%; margin-top: 0; margin-bottom: 0;">
+          
+          <?php
+                endwhile;
               }
-              
-              ?>
-              
-            </div>
+          ?>
 
+            </div>
             <nav class="row footer-bar">
                 <div class="col">
                     <a href="index.html"
@@ -157,6 +149,44 @@
                     /></a>
                 </div>
             </nav>
-        </div>  
+        </div>
     </body>
+  <script>
+    /*
+    function confirm_delete(timestamp)
+    {
+      var overlay = document.createElement("div");
+      overlay.className = "overlay";
+      
+      var div = document.createElement("div");
+      
+      var f = document.createElement("form");
+      f.setAttribute('method',"post");
+
+      var i = document.createElement("input"); //input element, text
+      i.setAttribute('type',"hidden");
+      i.setAttribute('name',"timestamp");
+      i.setAttribute('value',timestamp);
+
+      var s = document.createElement("button"); //input element, Submit button
+      s.setAttribute('type',"submit");
+      s.setAttribute('name',"delete");
+      var text = document.createTextNode("Yes");
+      s.appendChild(text);
+      
+      var b = document.createElement("button");
+      b.className = "cancel_but";
+      text = document.createTextNode("No");
+      b.appendChild(text);
+
+      var screen = document.getElementById("screen");
+      screen.prepend(overlay);
+      overlay.appendChild(div);
+      div.appendChild(f);
+      f.appendChild(i);
+      f.appendChild(s);
+      f.appendChild(b);
+    }
+    */
+  </script>
 </html>

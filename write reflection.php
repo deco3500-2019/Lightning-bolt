@@ -2,20 +2,6 @@
 include 'conn.php';
 session_start();
 
-if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
-  
-  $db = new MySQLDatabase();
-  $db->connect();
-  $db->query('TRUNCATE TABLE 3500website;');
-  
-  $what = $_POST["what"];
-  $why = $_POST["why"];
-  $mood = $_POST["mood"];
-  $db ->query("INSERT INTO 3500website(What, Why, Mood) VALUES('$what', '$why', '$mood')");
-  
-  $db->disconnect();
-  header('Location: view journal.php');
-}
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +32,23 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 </head>
-
+<style>
+  #file_input {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    z-index: -1;
+  }
+  
+  .messagebox{
+    max-width: 300px;
+  }
+  
+  .messagebox > button {
+    border: none;
+    background-color: transparent;
+  }
+</style>
 <html>
     <body>
         <script
@@ -77,7 +79,8 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
                     />
                 </div>
             </div>
-            <form id="write" method="post">
+            <form enctype="multipart/form-data" id="write" method="post" action="view journal.php">
+              <input type="hidden" name="method" value="post">
                 <!-- add handler! -->
                 <div id="write-head">
                     <label for="exit-modal" class="clickable"
@@ -87,13 +90,23 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
                         Social Media <br />
                         Reflection
                     </h4>
-                    <input id="sub "type="image" src="images/tick.png" name="sub" value='Submit'>
+                    <input id="sub" type="image" src="images/tick.png" name="sub" value='Submit'>
                 </div>
-                <div class="fb-post">
-                    <img src="images/add.png" alt="upload social media screenshot">
+                <div class="fb-post" style="overflow: hidden;">
+                  <input type="file" accept="image/*" onchange="show_img(event)" name="image" id="file_input" required oninvalid="no_img_popup()">
+                  <label for="file_input"><img class="post_img" id="post_img" src="images/add.png" alt="upload social media screenshot"></label>
+                    
                 </div>
                 <hr />
                 <div id="write-body">
+                    <h4>Title</h4>
+                    <textarea
+                        form="write"
+                        name="title"
+                        cols="43"
+                        rows="2"
+                        placeholder="...?"
+                    ></textarea>
                     <h4>How do you feel about this post?</h4>
                     <textarea
                         form="write"
@@ -148,6 +161,13 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
                     </label>
                 </div>
             </div>
+            <div class="overlay" id="no_img">
+                <div class="messagebox">
+                    <h3>Please upload a screenshot</h3>
+                    <hr />
+                    <button onclick="close_popup()"><h3>OK</h3></button>
+                </div>
+            </div>
 
             <nav class="row footer-bar">
                 <div class="col">
@@ -193,6 +213,29 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
             </nav>
         </div>
     </body>
-
+    <script>
+      var show_img = function(event) {
+        var img = document.getElementById('post_img');
+        var fbpost = document.getElementsByClassName('fb-post');
+        
+        img.src = URL.createObjectURL(event.target.files[0]);
+        img.style.width = 'auto';
+        img.style.maxWidth = '100%';
+      };
+      
+      var no_img_popup = function() {
+        var message = document.getElementById('no_img');
+        message.style.opacity = 1;
+        message.style.visibility = 'visible';
+        message.style.pointerEvents = 'all';
+      }
+      
+      var close_popup = function() {
+        var message = document.getElementById('no_img');
+        message.style.opacity = 0;
+        message.style.visibility = 'invisible';
+        message.style.pointerEvents = 'none';
+      }
+    </script>
     <script src="js/journal.js"></script>
 </html>

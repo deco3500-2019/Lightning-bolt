@@ -1,13 +1,11 @@
-
-
-$(window).scroll(function() {
+window.onload = function() {
+  $(window).scroll(function() {
     if($(window).scrollTop()) {
         $('nav').removeClass('trans');
     } else {
         $('nav').addClass('trans');
     }
 });
-
 function month() {
 
     var month = new Array();
@@ -23,6 +21,7 @@ function month() {
     month[9] = "OCT";
     month[10] = "NOV";
     month[11] = "DEC";
+
 
 
     var full_month = new Array();
@@ -49,14 +48,12 @@ function month() {
     console.log(time);
 
     var date = day + "." + current_month + "." + year;
-    window.onload = function a() {
-        
-        document.getElementById("time").innerHTML = time;
-    }  
-};
+  return time;
+    
+}
 
-month();
 
+  document.getElementById("time").innerHTML = month();
 
 
 
@@ -64,5 +61,5 @@ function flip() {
     $("#card").toggleClass('flipped');
     console.log("flipcalled");
 }
-
+}
 
