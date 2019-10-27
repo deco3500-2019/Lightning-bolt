@@ -94,7 +94,7 @@ if (isset($_POST["delete"])) {
                 </form>
                 <form method="post">
                   <input type="hidden" name="id" value="<?php echo $id ?>">
-                  <button type="submit" name="delete" style="border: none; padding: 0px; background-color: transparent;">
+                  <button type="submit" name="delete" style="border: none; padding: 0px; background-color: transparent;margin-top:10px;">
                     ❌
                   </button>
                 </form>
