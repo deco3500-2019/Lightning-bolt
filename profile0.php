@@ -85,37 +85,19 @@
   </body>
 
 <?php
-  echo "<script>var happy = [1,2,1,3,1,0,0];";
-  echo "var energetic = [3,2,1,4,0,1,0];";
-  echo "var tired = [2,0,3,2,1,1,0];";
-  echo "var angry = [0,0,3,2,0,2,0];";
-  echo "var sad = [0,2,1,2,4,2,0];</script>";
+  echo "<script>var moods = [3,2,1,4,5,3]</script>";
   
   include 'conn.php';
   $db = new MySQLDatabase();
   $db->connect();
   $entry = $db->query("SELECT * FROM 3500website");
   if (mysqli_num_rows($entry)) {
-    while ($row = $entry->fetch_array()):
+    if ($row = mysqli_fetch_array($entry)) {
       $mood = $row['Mood'];
-      switch($mood) {
-        case 1:
-          echo "<script>sad[6]++;</script>";
-          break;
-        case 2:
-          echo "<script>angry[6]++;</script>";
-          break;
-        case 3:
-          echo "<script>tired[6]++;</script>";
-          break;
-        case 4:
-          echo "<script>energetic[6]++;</script>";
-          break;
-        case 5:
-          echo "<script>happy[6]++;</script>";
-          break;
-      }
-    endwhile;
+      echo "<script>";
+      echo "moods.push(parseInt('$mood'));";
+      echo "</script>";
+    }
   }
 ?>
 
@@ -131,51 +113,43 @@
     days.unshift(dayName);
   }
   
+  var pointColors = [];
+  moods.forEach(function(mood) {
+    switch(mood) {
+      case 1:
+        pointColors.push('#7AB1FF');
+        break;
+      case 2:
+        pointColors.push('#EE5D68');
+        break;
+      case 3:
+        pointColors.push('#FFAD32');
+        break;
+      case 4:
+        pointColors.push('#5BFF62');
+        break;
+      case 5:
+        pointColors.push('#FBFF00');
+        break;
+    }
+  });
+  console.log(moods);
+  
   let chart = document.getElementById('chart').getContext('2d');
   let moodChart = new Chart(chart, {
     type:'line',
     data:{
       labels: days,
       datasets:[{
-        label: 'Sad',
+        label: 'mood',
         backgroundColor: 'transparent',
-        borderColor: '#7AB1FF',
+        borderColor: '#ccc',
         pointRadius: 5,
+        pointBorderWidth: 1,
+        pointBorderColor: 'black',
         borderWidth:2,
-        pointBackgroundColor: '#a3c9ff',
-        data:sad
-      }, {
-        label: 'Angry',
-        backgroundColor: 'transparent',
-        borderColor: '#EE5D68',
-        pointRadius: 5,
-        borderWidth:2,
-        pointBackgroundColor: '#f0848c',
-        data:angry
-      }, {
-        label: 'Tired',
-        backgroundColor: 'transparent',
-        borderColor: '#FFAD32',
-        pointRadius: 5,
-        borderWidth:2,
-        pointBackgroundColor: '#ffc978',
-        data:tired
-      }, {
-        label: 'Energetic',
-        backgroundColor: 'transparent',
-        borderColor: '#32e339',
-        pointRadius: 5,
-        borderWidth:2,
-        pointBackgroundColor: '#8aff8f',
-        data:energetic
-      }, {
-        label: 'Happy',
-        backgroundColor: 'transparent',
-        borderColor: '#e5e800',
-        pointRadius: 5,
-        borderWidth:2,
-        pointBackgroundColor: '#fcff4a',
-        data:happy
+        pointBackgroundColor: pointColors,
+        data:moods
       }],
     },
     options:{
@@ -183,9 +157,25 @@
       scales: {
         yAxes: [{
           ticks: {
-            min: 0,
+            min: 1,
+            max: 5,
             stepSize: 1,
-            suggestedMin: 0.5
+            suggestedMin: 1.5,
+            suggestedMax: 5.5,
+            callback: function(label, index, labels) {
+              switch (label) {
+                case 1:
+                  return 'Sad';
+                case 2:
+                  return 'Angry';
+                case 3:
+                  return 'Tired';
+                case 4:
+                  return 'Energetic';
+                case 5:
+                  return 'Happy';
+              }
+            }
           }
         }]
       }

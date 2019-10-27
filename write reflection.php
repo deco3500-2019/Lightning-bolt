@@ -1,21 +1,6 @@
 <?php
 include 'conn.php';
 session_start();
-
-if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
-  
-  $db = new MySQLDatabase();
-  $db->connect();
-  $db->query('TRUNCATE TABLE 3500website;');
-  
-  $what = $_POST["what"];
-  $why = $_POST["why"];
-  $mood = $_POST["mood"];
-  $db ->query("INSERT INTO 3500website(What, Why, Mood) VALUES('$what', '$why', '$mood')");
-  
-  $db->disconnect();
-  header('Location: view journal.php');
-}
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +62,8 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
                     />
                 </div>
             </div>
-            <form id="write" method="post">
+            <form id="write" method="post" action="view journal.php">
+              <input type="hidden" name="method" value="post">
                 <!-- add handler! -->
                 <div id="write-head">
                     <label for="exit-modal" class="clickable"
@@ -87,13 +73,21 @@ if (isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
                         Social Media <br />
                         Reflection
                     </h4>
-                    <input id="sub "type="image" src="images/tick.png" name="sub" value='Submit'>
+                    <input id="sub" type="image" src="images/tick.png" name="sub" value='Submit'>
                 </div>
                 <div class="fb-post">
                     <img src="images/add.png" alt="upload social media screenshot">
                 </div>
                 <hr />
                 <div id="write-body">
+                    <h4>Title</h4>
+                    <textarea
+                        form="write"
+                        name="title"
+                        cols="43"
+                        rows="2"
+                        placeholder="...?"
+                    ></textarea>
                     <h4>How do you feel about this post?</h4>
                     <textarea
                         form="write"

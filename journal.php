@@ -99,11 +99,11 @@
               $entry = $db->query("SELECT * FROM 3500website");
               if (mysqli_num_rows($entry)) {
                 if ($row = mysqli_fetch_array($entry)) {
-                  echo "<a href=\"view journal.php\">
+                  echo "<a href=\"journal list.php\">
                           <div class=\"jour\">
                             <div class=\"jour_date\">
-                              <p>24</p>
-                              <p class=\"prev_w\">Thu</p>
+                              <p id=\"date\"></p>
+                              <p id=\"day\" class=\"prev_w\"></p>
                             </div>
                             <div class=\"jour_img jour_img_4\"></div>
                           </div>
@@ -157,21 +157,6 @@
                     /></a>
                 </div>
             </nav>
-        </div>
-        <nav class="navbar navbar-dark bg-dark fixed-top ">
-            <a
-                class="navbar-brand"
-                href="https://deco3801-computerised.uqcloud.net/"
-                class="ml-sm-2"
-                >App-Tivity</a
-            >
-            <div class="navbar-nav ml-auto mr-sm-2">
-                <a href="#home" class="nav-link nav-item">home</a>
-                <a href="#features" class="nav-link nav-item">about</a>
-                <a href="#pricing" class="nav-link nav-item">video</a>
-                <a href="#pricing" class="nav-link nav-item">team</a>
-                <a href="data.php" class="nav-link nav-item">statistic</a>
-            </div>
-        </nav>
+        </div>  
     </body>
 </html>

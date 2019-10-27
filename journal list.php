@@ -1,62 +1,18 @@
 <?php
-              
-              include 'conn.php';
-              session_start();
-              $db = new MySQLDatabase();
-              $db->connect();
-              
-              if ($_POST['method'] == "post") {
-                if (isset($_POST["title"]) && isset($_POST["what"]) && isset($_POST["why"]) && isset($_POST["mood"])) {
-  
-                  $title = $_POST["title"];
-                  $what = $_POST["what"];
-                  $why = $_POST["why"];
-                  $mood = $_POST["mood"];
-                  $db ->query("INSERT INTO 3500website(Title, What, Why, Mood) VALUES('$title', '$what', '$why', '$mood')");
-                  
-                  $entry = $db->query("SELECT * FROM 3500website ORDER BY id DESC LIMIT 1;");
-                }
-              } else if($_POST['method'] == "view"){
-              
-              $id = $_POST['id'];
-          
-              $entry = $db->query("SELECT * FROM 3500website WHERE id = ".$id."");
-              }
-              if (mysqli_num_rows($entry)) {
-                if ($row = mysqli_fetch_array($entry)) {
-                  $title = $row['Title'];
-                  $what = $row['What'];
-                  $why = $row['Why'];
-                  $mood = $row['Mood'];
-                  
-                  switch($mood) {
-                    case 1:
-                      $mood_name = "Sad";
-                      $label_id = "sad-label";
-                      break;
-                    case 2:
-                      $mood_name = "Angry";
-                      $label_id = "angry-label";
-                      break;
-                    case 3:
-                      $mood_name = "Tired";
-                      $label_id = "tired-label";
-                      break;
-                    case 4:
-                      $mood_name = "Energetic";
-                      $label_id = "energetic-label";
-                      break;
-                    case 5:
-                      $mood_name = "Happy";
-                      $label_id = "happy-label";
-                      break;
-                  }
-                }
-            
+
+include 'conn.php';
+$db = new MySQLDatabase();
+$db->connect();
+
+if (isset($_POST["delete"])) {
+  $delete_id = $_POST["id"];
+  $db->query("DELETE FROM 3500website WHERE id=".$delete_id."");
+}
+
 ?>
 <!DOCTYPE html>
 <head>
-    <title>Template</title>
+    <title></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
@@ -68,8 +24,6 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/write.css" />
-    <script src="js/journal.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -82,8 +36,9 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
-</head>
 
+    <script src="js/entry.js"></script>
+</head>
 <html>
     <body>
         <div id="iphonex"></div>
@@ -108,36 +63,50 @@
                     />
                 </div>
             </div>
+
             <div class="title">
-                <a href="journal list.php"
+                <a href="journal.php"
                     ><img class="back_img" src="images/back.png" alt="back"
                 /></a>
-                <h4>
-                  <?php echo $title; ?>
-                </h4>
+
+                <h2 id="day_title"></h2>
             </div>
-
+            <div id="prev_journal">
+          
           <?php
-                  echo "<div class=\"col\">
-                          <div class=\"fb-post\">
-                            <img class=\"post_img\" src=\"images/post.png\">
-                          </div>
-                          <div class=\"journal_view\">
-                            <h4>What did you feel</h4>
-                            <textarea disabled=\"disabled\">".$what."</textarea>
-                            <h4>Why did you feel that way</h4>
-                            <textarea disabled=\"disabled\">".$why."</textarea>
-                            <h4>Mood</h4>
-                            <div id=".$label_id." class=\"mood_view\">
-                              <span>".$mood_name."</span>
-                            </div>
-                          </div>
-                          
-                        </div>";
-                }
-            ?>
-            
+              
+          $entries = $db->query("SELECT * FROM 3500website");
+          if (mysqli_num_rows($entries)) {
+            while ($row = $entries->fetch_array()):
+              $id = $row['id'];
+              $timestamp = $row['TimeStamp'];
+              $time = date('H:i', strtotime($row['TimeStamp']));
+              $title = $row['Title'];
+          ?>
+              <div style="margin: 20px 25px 0 25px; font-size: 20px; display: flex;" class="row">
+                <form method="post" action="view journal.php" style="flex-grow: 2;">
+                  <input type="hidden" name="method" value="view">
+                  <input type="hidden" name="id" value="<?php echo $id ?>">
+                  <button type="submit" name="view_journal" style="width: 100%; max-width: 250px; border: none; padding: 0px; background-color: transparent; text-align: left;">
+                    <p style="margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?php echo $title; ?></p>
+                    <p style="font-family:'arial'; color: gray; font-size: 12px;"><?php echo $time; ?></p>
+                  </button>
+                </form>
+                <form method="post">
+                  <input type="hidden" name="id" value="<?php echo $id ?>">
+                  <button type="submit" name="delete" style="border: none; padding: 0px; background-color: transparent;">
+                    ❌
+                  </button>
+                </form>
+              </div>
+              <hr style="border-bottom: 1px solid #ccc; width: 86%; margin-top: 0; margin-bottom: 0;">
+          
+          <?php
+                endwhile;
+              }
+          ?>
 
+            </div>
             <nav class="row footer-bar">
                 <div class="col">
                     <a href="index.html"
@@ -182,4 +151,42 @@
             </nav>
         </div>
     </body>
+  <script>
+    /*
+    function confirm_delete(timestamp)
+    {
+      var overlay = document.createElement("div");
+      overlay.className = "overlay";
+      
+      var div = document.createElement("div");
+      
+      var f = document.createElement("form");
+      f.setAttribute('method',"post");
+
+      var i = document.createElement("input"); //input element, text
+      i.setAttribute('type',"hidden");
+      i.setAttribute('name',"timestamp");
+      i.setAttribute('value',timestamp);
+
+      var s = document.createElement("button"); //input element, Submit button
+      s.setAttribute('type',"submit");
+      s.setAttribute('name',"delete");
+      var text = document.createTextNode("Yes");
+      s.appendChild(text);
+      
+      var b = document.createElement("button");
+      b.className = "cancel_but";
+      text = document.createTextNode("No");
+      b.appendChild(text);
+
+      var screen = document.getElementById("screen");
+      screen.prepend(overlay);
+      overlay.appendChild(div);
+      div.appendChild(f);
+      f.appendChild(i);
+      f.appendChild(s);
+      f.appendChild(b);
+    }
+    */
+  </script>
 </html>

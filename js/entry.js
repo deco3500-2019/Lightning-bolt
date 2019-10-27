@@ -24,17 +24,33 @@ function month() {
     full_month[10] = "November";
     full_month[11] = "December";
 
+    var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  
     var d = new Date();
     var year = d.getFullYear();
     var full_cur_month = full_month[d.getMonth()];
     var time = d.getHours() + ":" + d.getMinutes();
     var title = full_cur_month + "/" + year;
+    var dd = String(d.getDate()).padStart(2, '0');
+    var day_title = full_cur_month + " " + dd;
+    var day = days[ d.getDay() ];
 
     window.onload = function a() {
-        
-        document.getElementById("time").innerHTML = time;
-        document.getElementById("prev_title").innerHTML = title;
-        console.log(title);
+        if (document.getElementById("time") != null) {
+            document.getElementById("time").innerHTML = time;
+        }
+        if (document.getElementById("prev_title") != null) {
+            document.getElementById("prev_title").innerHTML = title;
+        }
+        if (document.getElementById("day_title") != null) {
+            document.getElementById("day_title").innerHTML = day_title;
+        }
+        if (document.getElementById("date") != null) {
+            document.getElementById("date").innerHTML = dd;
+        }
+        if (document.getElementById("day") != null) {
+            document.getElementById("day").innerHTML = day;
+        }
     }  
 };
 
