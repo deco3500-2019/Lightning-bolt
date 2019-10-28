@@ -107,7 +107,7 @@ session_start();
                         rows="2"
                         placeholder="...?"
                     ></textarea>
-                    <h4>How do you feel about this post?</h4>
+                    <h4>How do I feel about this post?</h4>
                     <textarea
                         form="write"
                         name="what"
@@ -115,7 +115,7 @@ session_start();
                         rows="2"
                         placeholder="...?"
                     ></textarea>
-                    <h4>Why do you feel that way?</h4>
+                    <h4>Why do I feel this way?</h4>
                     <textarea
                         form="write"
                         name="why"

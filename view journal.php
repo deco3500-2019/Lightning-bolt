@@ -137,9 +137,9 @@
                             <img id=\"post_img\" src=".$image.">
                           </div>
                           <div class=\"journal_view\">
-                            <h4>What did you feel</h4>
+                            <h4>What did I feel</h4>
                             <textarea disabled=\"disabled\">".$what."</textarea>
-                            <h4>Why did you feel that way</h4>
+                            <h4>Why did I feel this way</h4>
                             <textarea disabled=\"disabled\">".$why."</textarea>
                             <h4>Mood</h4>
                             <div id=".$label_id." class=\"mood_view\">
